@@ -143,11 +143,6 @@ contract Presale {
         alloc[msg.sender] = 0;
     }
 
-    function startClaim() public onlyOwner {
-        require(isPublicStart == false, "Presale is open");
-        isClaimStart = true;
-    }
-
     function startOriginalistSale() public onlyOwner {
         isOriginalistStart = true;
     }
@@ -164,6 +159,17 @@ contract Presale {
 
     function endPublicSale() public onlyOwner {
         isPublicStart = false;
+    }
+
+    function startClaim() public onlyOwner {
+        require(isPublicStart == false, "Presale is open");
+        isClaimStart = true;
+    }
+
+    function recover() public onlyOwner {
+        require(isClaimStart == true, "Claim not allowed");
+        uint unsoldAmt = saleAmount - originalistSold - waitlistSold - publicSold;
+        IERC20(omo).transfer(owner, unsoldAmt);
     }
 
     function setOwner(address _address) public onlyOwner {
