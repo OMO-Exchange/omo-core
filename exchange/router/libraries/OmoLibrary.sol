@@ -21,7 +21,7 @@ library OmoLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'0eeece9abfbb4c9b49177d92b23420d9369537a3c347baa8f69923569023f382' // init code hash
+                hex'f0b8481afafc1568fdc5e1f585069fd08b3d2300e23efd3b1358f4d1cb08dd43' // init code hash
             ))));
     }
 
